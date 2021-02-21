@@ -32,7 +32,7 @@ public class Equipment {
 
     @Getter
     @Column(name = "COST")
-    private Float cost;
+    private Float price;
 
     @Getter
     @Column(name = "STOCK")
@@ -46,7 +46,7 @@ public class Equipment {
         this.storeId = storeId;
         this.name = name;
         this.imgLoc = imgLoc;
-        this.cost = cost;
+        this.price = cost;
         this.stock = stock;
         this.description = desc;
     }
@@ -67,7 +67,7 @@ public class Equipment {
     }
 
     public void setCost(Float cost) {
-        this.cost = cost;
+        this.price = cost;
     }
 
     public void setStock(Integer stock) {
