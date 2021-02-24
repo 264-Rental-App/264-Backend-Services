@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -29,7 +29,7 @@ public class Store {
     @Column(name = "category", nullable = false)
     private String category;
 
-    public Store( String name, Float lat, Float lon, int id, String commonAddress, String category){
+    public Store( String name, Float lat, Float lon, Long id, String commonAddress, String category){
         this.id = id;
         this.name = name;
         this.lat = lat;
@@ -66,11 +66,11 @@ public class Store {
         this.lon = lon;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
