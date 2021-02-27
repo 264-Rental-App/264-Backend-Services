@@ -10,9 +10,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Stores")
 public class Store {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -22,6 +19,10 @@ public class Store {
 
     @Column(name = "lon", nullable = false)
     private Float lon;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "commonAddress", nullable = false)
     private String commonAddress;
@@ -90,16 +91,13 @@ public class Store {
         this.category = category;
     }
     
-    public Store findbylatlon(float lat, float lon, double distance) {
+    public double findbylatlon(float lat, float lon, double distance) {
     		double theta = lon - this.lon;
 			double dist = Math.sin(Math.toRadians(lat)) * Math.sin(Math.toRadians(this.lat)) + Math.cos(Math.toRadians(lat)) * Math.cos(Math.toRadians(this.lat)) * Math.cos(Math.toRadians(theta));
 			dist = Math.acos(dist);
 			dist = Math.toDegrees(dist);
 			dist = dist * 60 * 1.1515;
-			if(Math.abs(dist) <= distance) {
-				return this;	
-			}else {
-				return null;
-			}
+			return dist;
     }
+
 }

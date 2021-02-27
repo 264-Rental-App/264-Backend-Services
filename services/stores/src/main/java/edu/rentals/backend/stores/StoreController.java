@@ -15,8 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 @RestController
@@ -41,14 +40,21 @@ public class StoreController {
 //    }
 
     @GetMapping("/search/stores")
-    public Page<Store> findStoresBylatlon(@RequestParam(name = "lat", required = true) float lat, @RequestParam(name = "long", required = true) float lon, @RequestParam(name = "dist", required = true) double dist, Pageable pageable){
+    public ResponseEntity<?> findStoresBylatlon(@RequestParam(name = "lat", required = true) float lat, @RequestParam(name = "long", required = true) float lon, Pageable pageable){
         if (lat != 0 && lon != 0){
-            	Page<Store> stores = storeapiservice.findAll(pageable);
-            	List<Store> store_list = new ArrayList<>();
-            	
-            	stores.forEach(s -> {if (s.findbylatlon(lat, lon, dist) != null) {store_list.add(s);}});
-            	Page<Store> result = new PageImpl(store_list);
-            	return result;
+            	List<Store> stores = storeapiservice.findAll();
+                double d = 30;
+
+            Collections.sort(stores, new Comparator<Store>() {
+                @Override
+                public int compare(Store o1, Store o2) {
+                    return Double.compare(o1.findbylatlon(lat, lon, d), o2.findbylatlon(lat, lon, d));
+                }
+            });
+                Map<String, List<Store>> result = new HashMap<>();
+                result.put("stores", stores);
+
+            	return ResponseEntity.ok(result);
             
         }else{
             try {
@@ -62,9 +68,12 @@ public class StoreController {
     }
 
     @GetMapping("/stores/{id}")
-    public Store getByID(@PathVariable Long id){
+    public ResponseEntity<?> getByID(@PathVariable Long id){
         Store store = storeapiservice.findById(id).get();
-        return store;
+        Map<String, Store> result = new HashMap<>();
+        result.put("store", store);
+
+        return ResponseEntity.ok(result);
     }
 
     @PatchMapping("/stores/{id}")
