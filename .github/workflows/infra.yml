@@ -10,12 +10,12 @@ jobs:
   infra:
     name: "Deploy Infrastructure"
     runs-on: ubuntu-latest
-
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDS }}
+    
     defaults:
       run:
         working-directory: infrastructure/
-      env:
-        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDS }}
 
     steps:
       - name: Checkout
