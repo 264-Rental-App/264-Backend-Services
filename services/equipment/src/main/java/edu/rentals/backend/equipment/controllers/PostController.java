@@ -23,5 +23,4 @@ public class PostController {
 
         return new PostEquipmentResponse(equipment.getId());
     }
-
 }
