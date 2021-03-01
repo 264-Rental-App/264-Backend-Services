@@ -2,7 +2,7 @@ name: stores-ci
 
 on:
   pull_request:
-  paths:
+    paths:
       - "services/stores/**"
 
 jobs:
