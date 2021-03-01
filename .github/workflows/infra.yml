@@ -12,7 +12,8 @@ jobs:
     runs-on: ubuntu-latest
 
     defaults:
-      working-directory: infrastructure/
+      run:
+        working-directory: infrastructure/
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDS }}
 
