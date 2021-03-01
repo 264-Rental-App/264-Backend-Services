@@ -22,7 +22,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
     machine_type = "g1-small"
 
     service_account = google_service_account.default_prod.email
-    oauth_scopes    = [
+    oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
   }
