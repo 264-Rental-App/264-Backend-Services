@@ -8,9 +8,9 @@ public class PatchUserByIdRequest {
 
     private String userEmail;
 
-    private Integer userPhoneNumber;
+    private String userPhoneNumber;
 
-    public PatchUserByIdRequest(String userId, String userFirstName, String userEmail, Integer userPhoneNumber) {
+    public PatchUserByIdRequest(String userId, String userFirstName, String userEmail, String userPhoneNumber) {
 
         this.userId = userId;
         this.userFirstName = userFirstName;
@@ -43,11 +43,11 @@ public class PatchUserByIdRequest {
         return userEmail;
     }
 
-    public void setUserPhoneNumber(Integer userPhoneNumber) {
+    public void setUserPhoneNumber(String userPhoneNumber) {
         this.userPhoneNumber = userPhoneNumber;
     }
 
-    public Integer getUserPhoneNumber() {
+    public String getUserPhoneNumber() {
         return userPhoneNumber;
     }
 

@@ -21,9 +21,9 @@ public class User {
     private String userEmail;
 
     @Column(name = "USER_PHONE_NUMBER", nullable = false)
-    private Integer userPhoneNumber;
+    private String userPhoneNumber;
 
-    public User(String userId, String userFirstName, String userEmail, Integer userPhoneNumber) {
+    public User(String userId, String userFirstName, String userEmail, String userPhoneNumber) {
         this.userId = userId;
         this.userFirstName = userFirstName;
         this.userEmail = userEmail;
@@ -62,11 +62,11 @@ public class User {
         return userEmail;
     }
 
-    public void setUserPhoneNumber(Integer phoneNumber) {
+    public void setUserPhoneNumber(String phoneNumber) {
         this.userPhoneNumber = phoneNumber;
     }
 
-    public Integer getUserPhoneNumber() {
+    public String getUserPhoneNumber() {
         return userPhoneNumber;
     }
 }

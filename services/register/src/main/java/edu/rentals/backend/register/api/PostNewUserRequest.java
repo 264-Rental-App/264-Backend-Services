@@ -10,9 +10,9 @@ public class PostNewUserRequest {
 
     private String userFirstName;
 
-    private Integer userPhoneNumber;
+    private String userPhoneNumber;
 
-    public PostNewUserRequest(String id, String email, String firstname, Integer phoneNumber) {
+    public PostNewUserRequest(String id, String email, String firstname, String phoneNumber) {
         this.userId = id;
         this.userEmail = email;
         this.userFirstName = firstname;
@@ -43,11 +43,11 @@ public class PostNewUserRequest {
         return this.userFirstName;
     }
 
-    public void setUserPhoneNumber(Integer userPhoneNumber) {
+    public void setUserPhoneNumber(String userPhoneNumber) {
         this.userPhoneNumber = userPhoneNumber;
     }
 
-    public Integer getUserPhoneNumber() {
+    public String getUserPhoneNumber() {
         return this.userPhoneNumber;
     }
 }
