@@ -4,38 +4,50 @@ import lombok.Setter;
 
 public class PostNewUserRequest {
 
-    @Setter
     private String userId;
 
-    @Setter
     private String userEmail;
 
-    @Setter
-    private String userFirstname;
+    private String userFirstName;
 
-    @Setter
-    private int userPhonenumber;
+    private Integer userPhoneNumber;
 
-    public PostNewUserRequest(String id, String email, String firstname, int phonenumber) {
+    public PostNewUserRequest(String id, String email, String firstname, Integer phoneNumber) {
         this.userId = id;
         this.userEmail = email;
-        this.userFirstname = firstname;
-        this.userPhonenumber = phonenumber;
+        this.userFirstName = firstname;
+        this.userPhoneNumber = phoneNumber;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUserId() {
         return this.userId;
     }
 
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
     public String getUserEmail() {
         return this.userEmail;
     }
 
-    public String getUserFirstname() {
-        return this.userFirstname;
+    public void setUserFirstName(String userFirstName) {
+        this.userFirstName = userFirstName;
     }
 
-    public int getUserPhonenumber() {
-        return this.userPhonenumber;
+    public String getUserFirstName() {
+        return this.userFirstName;
+    }
+
+    public void setUserPhoneNumber(Integer userPhoneNumber) {
+        this.userPhoneNumber = userPhoneNumber;
+    }
+
+    public int getUserPhoneNumber() {
+        return this.userPhoneNumber;
     }
 }

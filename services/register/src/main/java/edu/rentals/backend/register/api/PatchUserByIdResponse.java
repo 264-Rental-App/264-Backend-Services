@@ -1,13 +1,10 @@
 package edu.rentals.backend.register.api;
 
-import lombok.Getter;
-import lombok.Setter;
-
-public class PostNewUserResponse {
+public class PatchUserByIdResponse {
 
     private String userId;
 
-    public PostNewUserResponse(String userId) {
+    public PatchUserByIdResponse(String userId) {
         this.userId = userId;
     }
 
