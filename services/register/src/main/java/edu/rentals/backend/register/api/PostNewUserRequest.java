@@ -47,7 +47,7 @@ public class PostNewUserRequest {
         this.userPhoneNumber = userPhoneNumber;
     }
 
-    public int getUserPhoneNumber() {
+    public Integer getUserPhoneNumber() {
         return this.userPhoneNumber;
     }
 }

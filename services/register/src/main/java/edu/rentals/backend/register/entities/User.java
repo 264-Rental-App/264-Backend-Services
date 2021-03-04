@@ -3,7 +3,7 @@ package edu.rentals.backend.register.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "USER", indexes = { @Index(columnList = "USER_ID")})
 public class User {
 
     @Id
@@ -66,7 +66,7 @@ public class User {
         this.userPhoneNumber = phoneNumber;
     }
 
-    public int getUserPhoneNumber() {
+    public Integer getUserPhoneNumber() {
         return userPhoneNumber;
     }
 }
