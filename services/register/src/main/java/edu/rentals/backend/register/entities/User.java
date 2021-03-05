@@ -3,7 +3,7 @@ package edu.rentals.backend.register.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "USER", indexes = { @Index(columnList = "USER_ID")})
+@Table(name = "USERS", indexes = { @Index(columnList = "USER_ID")})
 public class User {
 
     @Id

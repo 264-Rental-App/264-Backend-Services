@@ -7,6 +7,7 @@ import edu.rentals.backend.register.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -15,7 +16,7 @@ public class PostController {
     private UserRepository userRepository;
 
     @PostMapping(path = "/users", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public PostNewUserResponse newUser(PostNewUserRequest request) {
+    public PostNewUserResponse newUser(@RequestBody PostNewUserRequest request) {
         User user = new User(request.getUserId(), request.getUserFirstName(), request.getUserEmail(), request.getUserPhoneNumber());
         userRepository.save(user);
 
