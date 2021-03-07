@@ -1,13 +1,13 @@
-package edu.rentals.backend.store;
+package edu.rentals.backend.rental;
 
+import edu.rentals.backend.rental.Rental;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import java.util.List;
-
 @RepositoryRestResource
-public interface StoreApiService extends JpaRepository<Store, Long>, JpaSpecificationExecutor<Store> {
+public interface RentalApiService extends JpaRepository<Rental, Long>, JpaSpecificationExecutor<Rental> {
 
-    Store findByownerId(String ownerId);
+    Rental findByinvoiceId(Long InvoiceId);
+
 }
