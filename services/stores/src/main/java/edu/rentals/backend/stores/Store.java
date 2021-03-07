@@ -1,9 +1,7 @@
 package edu.rentals.backend.stores;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -15,10 +13,10 @@ public class Store {
     private String name;
 
     @Column(name = "LAT", nullable = false)
-    private Float lat;
+    private Double lat;
 
     @Column(name = "LONG", nullable = false)
-    private Float lon;
+    private Double lon;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,16 +25,28 @@ public class Store {
     @Column(name = "COMMON_ADDRESS", nullable = false)
     private String commonAddress;
 
+    @Getter
+    @Setter
+    @Column(name = "manager", nullable = false)
+    private String ownerId;
+
     @Column(name = "CATEGORY", nullable = false)
     private String category;
 
-    public Store(String name, Float lat, Float lon, Long id, String commonAddress, String category) {
-        this.id = id;
+    @Getter
+    @Setter
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
+
+    public Store(String name, Double lat, Double lon, String id, String commonAddress, String category,
+            String phoneNumber) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;
+        this.ownerId = id;
         this.commonAddress = commonAddress;
         this.category = category;
+        this.phoneNumber = phoneNumber;
     }
 
     public Store() {
@@ -51,19 +61,19 @@ public class Store {
         this.name = name;
     }
 
-    public Float getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(Float lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
-    public Float getLon() {
+    public Double getLon() {
         return lon;
     }
 
-    public void setLon(Float lon) {
+    public void setLon(Double lon) {
         this.lon = lon;
     }
 
@@ -93,7 +103,8 @@ public class Store {
 
     public double findByLatLong(float lat, float lon, double distance) {
         double theta = lon - this.lon;
-        double dist = Math.sin(Math.toRadians(lat)) * Math.sin(Math.toRadians(this.lat)) + Math.cos(Math.toRadians(lat)) * Math.cos(Math.toRadians(this.lat)) * Math.cos(Math.toRadians(theta));
+        double dist = Math.sin(Math.toRadians(lat)) * Math.sin(Math.toRadians(this.lat))
+                + Math.cos(Math.toRadians(lat)) * Math.cos(Math.toRadians(this.lat)) * Math.cos(Math.toRadians(theta));
         dist = Math.acos(dist);
         dist = Math.toDegrees(dist);
         dist = dist * 60 * 1.1515;
