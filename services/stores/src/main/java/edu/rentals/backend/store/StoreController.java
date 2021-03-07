@@ -1,8 +1,12 @@
 package edu.rentals.backend.store;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,6 +59,15 @@ public class StoreController {
         result.put("store", store);
 
         return ResponseEntity.ok(result);
+    }
+
+    @GetMapping(path = "/stores", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Store getInvoiceByUser(@RequestHeader("Authorization") String token)
+            throws FirebaseAuthException {
+        FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(token);
+        String uid = decodedToken.getUid();
+
+        return storeapiservice.findByownerId(uid);
     }
 
     @PatchMapping("/stores/{id}")
