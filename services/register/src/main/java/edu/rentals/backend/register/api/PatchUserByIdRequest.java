@@ -10,12 +10,15 @@ public class PatchUserByIdRequest {
 
     private String userPhoneNumber;
 
-    public PatchUserByIdRequest(String userId, String userFirstName, String userEmail, String userPhoneNumber) {
+    private String accountType;
+
+    public PatchUserByIdRequest(String userId, String userFirstName, String userEmail, String userPhoneNumber, String accountType) {
 
         this.userId = userId;
         this.userFirstName = userFirstName;
         this.userEmail = userEmail;
         this.userPhoneNumber = userPhoneNumber;
+        this.accountType = accountType;
 
     }
 
@@ -49,6 +52,14 @@ public class PatchUserByIdRequest {
 
     public String getUserPhoneNumber() {
         return userPhoneNumber;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public String getAccountType() {
+        return accountType;
     }
 
 }
