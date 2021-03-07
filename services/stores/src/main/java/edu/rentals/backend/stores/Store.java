@@ -1,9 +1,7 @@
 package edu.rentals.backend.stores;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -22,7 +20,13 @@ public class Store {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false, updatable = false)
     private Long id;
+
+    @Getter
+    @Setter
+    @Column(name = "OWNER_ID", nullable = false)
+    private String ownerId;
 
     @Column(name = "COMMON_ADDRESS", nullable = false)
     private String commonAddress;
@@ -30,13 +34,13 @@ public class Store {
     @Column(name = "CATEGORY", nullable = false)
     private String category;
 
-    public Store(String name, Float lat, Float lon, Long id, String commonAddress, String category) {
-        this.id = id;
+    public Store(String name, Float lat, Float lon, String commonAddress, String category, String ownerId) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;
         this.commonAddress = commonAddress;
         this.category = category;
+        this.ownerId = ownerId;
     }
 
     public Store() {

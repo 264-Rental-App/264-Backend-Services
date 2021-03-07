@@ -1,4 +1,4 @@
-package edu.rentals.backend.store;
+package edu.rentals.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
