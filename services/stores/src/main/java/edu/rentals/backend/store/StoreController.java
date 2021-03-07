@@ -1,8 +1,6 @@
 package edu.rentals.backend.store;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
-import com.google.firebase.auth.FirebaseToken;
+import edu.rentals.backend.stores.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,6 +19,9 @@ public class StoreController {
     public Store createStore(@RequestBody Store s) {
         return storeapiservice.save(s);
     }
+
+//    @GetMapping(path = "/stores", produces MediaType.APPLICATION_JSON_VALUE)
+
 
     @GetMapping(path = "/search/stores", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findStoresByLatLong(@RequestParam(name = "lat", required = true) float lat,
