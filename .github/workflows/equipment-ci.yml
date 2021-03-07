@@ -2,14 +2,14 @@ name: equipment-ci
 
 on:
   pull_request:
-  paths:
+    paths:
       - "services/equipment/**"
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
-     defaults:
+    defaults:
       run:
         working-directory: services/equipment/
 

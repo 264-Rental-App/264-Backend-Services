@@ -1,9 +1,9 @@
-name: stores-ci
+name: forms-ci
 
 on:
   pull_request:
     paths:
-      - "services/stores/**"
+      - "services/form/**"
 
 jobs:
   test:
@@ -11,7 +11,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: services/stores/
+        working-directory: services/forms/
 
     steps:
       - uses: actions/checkout@v2

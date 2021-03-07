@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: equipment-deployment
+  labels:
+    app: equipment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: equipment
+  template:
+    metadata:
+      labels:
+        app: equipment
+    spec:
+      containers:
+        - name: equipment-container
+          image: gcr.io/astute-anagram-303907/equipment:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: equipment-service
+  labels:
+    app: equipment
+spec:
+  selector:
+    app: equipment
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
