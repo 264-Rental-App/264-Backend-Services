@@ -1,9 +1,4 @@
-package edu.rentals.backend.stores;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
+package edu.rentals.backend.invoice.entities;
 
 import javax.persistence.*;
 

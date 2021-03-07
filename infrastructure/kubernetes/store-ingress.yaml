@@ -2,15 +2,15 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /equipment$1
+    nginx.ingress.kubernetes.io/rewrite-target: /stores$1
     kubernetes.io/ingress.class: nginx
-  name: equipment-ingress
+  name: store-ingress
   namespace: default
 spec:
   rules:
     - http:
         paths:
           - backend:
-              serviceName: equipment-service
+              serviceName: store-service
               servicePort: 8080
-            path: /equipment(.*)
+            path: /stores(.*)

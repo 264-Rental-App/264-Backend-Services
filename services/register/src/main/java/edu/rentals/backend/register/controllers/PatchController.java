@@ -6,7 +6,7 @@ import edu.rentals.backend.register.entities.User;
 import edu.rentals.backend.register.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,17 +15,17 @@ public class PatchController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping(path = "/users/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(path = "/users/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public PostNewUserResponse updatedUser(@RequestBody PatchUserByIdRequest request) {
         User user = userRepository.findByUserId(request.getUserId());
 
-        if(request.getUserFirstName() != null) {
+        if (request.getUserFirstName() != null) {
             user.setUserFirstName(request.getUserFirstName());
         }
-        if(request.getUserEmail() != null) {
+        if (request.getUserEmail() != null) {
             user.setUserEmail(request.getUserEmail());
         }
-        if(request.getUserPhoneNumber() != null) {
+        if (request.getUserPhoneNumber() != null) {
             user.setUserPhoneNumber(request.getUserPhoneNumber());
         }
 

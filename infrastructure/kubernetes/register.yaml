@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: register-deployment
+  labels:
+    app: register
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: register
+  template:
+    metadata:
+      labels:
+        app: register
+    spec:
+      containers:
+        - name: register-container
+          image: gcr.io/astute-anagram-303907/register:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: register-service
+  labels:
+    app: register
+spec:
+  selector:
+    app: register
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

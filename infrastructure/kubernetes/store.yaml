@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store-deployment
+  labels:
+    app: store
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: store
+  template:
+    metadata:
+      labels:
+        app: store
+    spec:
+      containers:
+        - name: store-container
+          image: gcr.io/astute-anagram-303907/store:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: store-service
+  labels:
+    app: store
+spec:
+  selector:
+    app: store
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

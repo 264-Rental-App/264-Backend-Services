@@ -50,7 +50,7 @@ public class Store {
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
-    public Store(String name, Double lat, Double lon, String id, String commonAddress, String category, String phoneNumber){
+    public Store(String name, Double lat, Double lon, String id, String commonAddress, String category, String phoneNumber) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;
@@ -63,14 +63,13 @@ public class Store {
     public Store() {
 
     }
-    
-    public double findbylatlon(float lat, float lon, double distance) {
-    		double theta = lon - this.lon;
-			double dist = Math.sin(Math.toRadians(lat)) * Math.sin(Math.toRadians(this.lat)) + Math.cos(Math.toRadians(lat)) * Math.cos(Math.toRadians(this.lat)) * Math.cos(Math.toRadians(theta));
-			dist = Math.acos(dist);
-			dist = Math.toDegrees(dist);
-			dist = dist * 60 * 1.1515;
-			return dist;
-    }
 
+    public double findByLatLong(float lat, float lon, double distance) {
+        double theta = lon - this.lon;
+        double dist = Math.sin(Math.toRadians(lat)) * Math.sin(Math.toRadians(this.lat)) + Math.cos(Math.toRadians(lat)) * Math.cos(Math.toRadians(this.lat)) * Math.cos(Math.toRadians(theta));
+        dist = Math.acos(dist);
+        dist = Math.toDegrees(dist);
+        dist = dist * 60 * 1.1515;
+        return dist;
+    }
 }
