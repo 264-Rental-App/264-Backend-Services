@@ -15,7 +15,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   name       = "kubes-node-pool"
   location   = "us-central1-a"
   cluster    = google_container_cluster.kubes.name
-  node_count = 2
+  node_count = 1
 
   node_config {
     preemptible  = true

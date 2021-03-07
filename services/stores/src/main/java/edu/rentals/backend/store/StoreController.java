@@ -1,12 +1,11 @@
 package edu.rentals.backend.store;
 
+import edu.rentals.backend.stores.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import edu.rentals.backend.stores.Store;
 
 import java.util.*;
 
@@ -22,7 +21,7 @@ public class StoreController {
 
     @GetMapping(path = "/search/stores", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findStoresByLatLong(@RequestParam(name = "lat", required = true) float lat,
-            @RequestParam(name = "long", required = true) float lon) {
+                                                 @RequestParam(name = "long", required = true) float lon) {
         if (lat != 0 && lon != 0) {
             List<Store> stores = storeapiservice.findAll();
             double d = 30;

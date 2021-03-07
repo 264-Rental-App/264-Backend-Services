@@ -13,40 +13,34 @@ public class Store {
     private String name;
 
     @Column(name = "LAT", nullable = false)
-    private Double lat;
+    private Float lat;
 
     @Column(name = "LONG", nullable = false)
-    private Double lon;
+    private Float lon;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false, updatable = false)
     private Long id;
+
+    @Getter
+    @Setter
+    @Column(name = "OWNER_ID", nullable = false)
+    private String ownerId;
 
     @Column(name = "COMMON_ADDRESS", nullable = false)
     private String commonAddress;
 
-    @Getter
-    @Setter
-    @Column(name = "manager", nullable = false)
-    private String ownerId;
-
     @Column(name = "CATEGORY", nullable = false)
     private String category;
 
-    @Getter
-    @Setter
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
-
-    public Store(String name, Double lat, Double lon, String id, String commonAddress, String category,
-            String phoneNumber) {
+    public Store(String name, Float lat, Float lon, String commonAddress, String category, String ownerId) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;
-        this.ownerId = id;
         this.commonAddress = commonAddress;
         this.category = category;
-        this.phoneNumber = phoneNumber;
+        this.ownerId = ownerId;
     }
 
     public Store() {
@@ -61,19 +55,19 @@ public class Store {
         this.name = name;
     }
 
-    public Double getLat() {
+    public Float getLat() {
         return lat;
     }
 
-    public void setLat(Double lat) {
+    public void setLat(Float lat) {
         this.lat = lat;
     }
 
-    public Double getLon() {
+    public Float getLon() {
         return lon;
     }
 
-    public void setLon(Double lon) {
+    public void setLon(Float lon) {
         this.lon = lon;
     }
 
@@ -103,8 +97,7 @@ public class Store {
 
     public double findByLatLong(float lat, float lon, double distance) {
         double theta = lon - this.lon;
-        double dist = Math.sin(Math.toRadians(lat)) * Math.sin(Math.toRadians(this.lat))
-                + Math.cos(Math.toRadians(lat)) * Math.cos(Math.toRadians(this.lat)) * Math.cos(Math.toRadians(theta));
+        double dist = Math.sin(Math.toRadians(lat)) * Math.sin(Math.toRadians(this.lat)) + Math.cos(Math.toRadians(lat)) * Math.cos(Math.toRadians(this.lat)) * Math.cos(Math.toRadians(theta));
         dist = Math.acos(dist);
         dist = Math.toDegrees(dist);
         dist = dist * 60 * 1.1515;

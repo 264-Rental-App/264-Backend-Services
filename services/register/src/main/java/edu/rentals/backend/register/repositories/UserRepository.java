@@ -8,5 +8,5 @@ import java.util.List;
 
 @RepositoryRestResource(path = "users")
 public interface UserRepository extends JpaRepository<User, String> {
-    public User findByUserId(String userID);
+    public User findOneByUserId(String userID);
 }

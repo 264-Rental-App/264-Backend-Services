@@ -17,6 +17,7 @@ public class Store {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID", nullable = false, updatable = false)
     private Long id;
 
     @Column(name = "COMMON_ADDRESS", nullable = false)
@@ -25,8 +26,7 @@ public class Store {
     @Column(name = "CATEGORY", nullable = false)
     private String category;
 
-    public Store(String name, Float lat, Float lon, Long id, String commonAddress, String category) {
-        this.id = id;
+    public Store(String name, Float lat, Float lon, String commonAddress, String category) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;

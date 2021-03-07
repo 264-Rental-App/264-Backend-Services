@@ -17,7 +17,7 @@ public class GetController {
 
     @GetMapping(path = "/users/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public GetUserFirstNameByUserIdResponse getUserByUserId(@PathVariable("userId") String userId) {
-        User user = userRepository.findByUserId(userId);
+        User user = userRepository.findOneByUserId(userId);
         return new GetUserFirstNameByUserIdResponse(user.getUserFirstName());
     }
 
