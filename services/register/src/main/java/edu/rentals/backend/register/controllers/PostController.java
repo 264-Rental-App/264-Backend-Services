@@ -17,7 +17,7 @@ public class PostController {
 
     @PostMapping(path = "/users", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public PostNewUserResponse newUser(@RequestBody PostNewUserRequest request) {
-        User user = new User(request.getUserId(), request.getUserFirstName(), request.getUserEmail(), request.getUserPhoneNumber());
+        User user = new User(request.getUserId(), request.getUserFirstName(), request.getUserEmail(), request.getUserPhoneNumber(), request.getAccountType());
         userRepository.save(user);
 
         return new PostNewUserResponse(user.getUserId());
