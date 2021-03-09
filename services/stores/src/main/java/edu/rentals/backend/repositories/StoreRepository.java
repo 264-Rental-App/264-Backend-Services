@@ -6,5 +6,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface StoreRepository extends JpaRepository<Store, Long> {
-    Store findByOwnerId(String ownerId);
+    Store findOneByOwnerId(String ownerId);
 }

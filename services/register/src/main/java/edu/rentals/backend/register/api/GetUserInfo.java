@@ -11,10 +11,10 @@ public class GetUserInfo {
 
     @Getter
     @Setter
-    private String userType;
+    private String accountType;
 
-    public GetUserInfo(String userFirstName, String userType) {
+    public GetUserInfo(String userFirstName, String accountType) {
         this.userFirstName = userFirstName;
-        this.userType = userType;
+        this.accountType = accountType;
     }
 }

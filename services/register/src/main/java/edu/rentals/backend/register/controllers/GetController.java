@@ -26,5 +26,4 @@ public class GetController {
         User user = userRepository.findOneByUserId(userId);
         return new GetUserInfo(user.getUserFirstName(), user.getUserType());
     }
-
 }
