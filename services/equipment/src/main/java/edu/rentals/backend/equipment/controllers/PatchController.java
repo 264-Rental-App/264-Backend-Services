@@ -23,8 +23,8 @@ public class PatchController {
             equipment.setPrice(request.getCost());
         if (request.getDescription() != null)
             equipment.setDescription(request.getDescription());
-        if (request.getImgLoc() != null)
-            equipment.setImgLoc(request.getImgLoc());
+        if (request.getCategory() != null)
+            equipment.setCategory(request.getCategory());
         if (request.getName() != null)
             equipment.setName(request.getName());
         if (request.getQuantity() != null)

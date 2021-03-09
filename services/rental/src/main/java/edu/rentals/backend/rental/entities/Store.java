@@ -46,13 +46,19 @@ public class Store {
     @Column(name = "OWNER_ID", nullable = false)
     private String ownerId;
 
-    public Store(String name, Float lat, Float lon, String commonAddress, String category, String ownerId) {
+    @Getter
+    @Setter
+    @Column(name = "PHONE_NUMBER")
+    private String phoneNumber;
+
+    public Store(String name, Float lat, Float lon, String commonAddress, String category, String ownerId, String phoneNumber) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;
         this.commonAddress = commonAddress;
         this.category = category;
         this.ownerId = ownerId;
+        this.phoneNumber = phoneNumber;
     }
 
     public Store() {

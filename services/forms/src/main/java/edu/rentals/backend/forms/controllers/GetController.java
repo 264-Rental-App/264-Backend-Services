@@ -26,7 +26,6 @@ public class GetController {
     @GetMapping(path = "/rental/forms/{storeId}/{formId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Form getFormByStoreIdAndFormId(@PathVariable("storeId") Long storeId,
             @PathVariable("formId") Long formId) {
-        Form form = formRepository.findOneByStoreIdAndId(storeId, formId);
-        return form;
+        return formRepository.findOneByStoreIdAndId(storeId, formId);
     }
 }

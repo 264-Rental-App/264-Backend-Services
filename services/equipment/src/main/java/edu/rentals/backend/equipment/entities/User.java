@@ -48,4 +48,8 @@ public class User {
         this.userPhoneNumber = userPhoneNumber;
         this.userType = userType;
     }
+
+    public User() {
+
+    }
 }

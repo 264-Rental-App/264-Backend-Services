@@ -52,4 +52,8 @@ public class Invoice {
         this.storeName = storeName;
         this.userId = userId;
     }
+
+    public Invoice() {
+
+    }
 }

@@ -18,7 +18,7 @@ public class PostController {
 
     @PostMapping(path = "/equipment", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public PostEquipmentResponse newEquipment(@RequestBody PostEquipmentRequest request) {
-        Equipment equipment = new Equipment(request.getStoreId(), request.getName(), request.getImgLoc(),
+        Equipment equipment = new Equipment(request.getStoreId(), request.getName(), request.getCategory(),
                 request.getCost(), request.getQuantity(), request.getDescription());
         equipmentRepository.save(equipment);
 

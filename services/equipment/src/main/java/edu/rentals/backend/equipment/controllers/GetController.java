@@ -18,7 +18,7 @@ public class GetController {
     @Autowired
     private EquipmentRepository equipmentRepository;
 
-    @GetMapping(path = "/equipment/{storeId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/equipment/store/{storeId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public GetEquipmentByStoreIdResponse getEquipmentByStoreId(@PathVariable("storeId") Long storeId) {
         List<Equipment> equipment = equipmentRepository.findByStoreId(storeId);
         return new GetEquipmentByStoreIdResponse(equipment);
@@ -26,7 +26,7 @@ public class GetController {
 
     @GetMapping(path = "/equipment/{equipmentId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public GetEquipmentResponse getEquipmentById(@PathVariable("equipmentId") Long equipmentId) {
-        Equipment equipment = equipmentRepository.getOne(equipmentId);
+        Equipment equipment = equipmentRepository.findById(equipmentId).get();
         return new GetEquipmentResponse(equipment);
     }
 }

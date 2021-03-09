@@ -21,9 +21,6 @@ public class StoreController {
         return storeRepository.save(s);
     }
 
-//    @GetMapping(path = "/stores", produces MediaType.APPLICATION_JSON_VALUE)
-
-
     @GetMapping(path = "/search/stores", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findStoresByLatLong(@RequestParam(name = "lat", required = true) float lat,
                                                  @RequestParam(name = "long", required = true) float lon) {

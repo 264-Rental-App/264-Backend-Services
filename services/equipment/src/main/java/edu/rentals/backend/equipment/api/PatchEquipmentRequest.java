@@ -1,57 +1,40 @@
 package edu.rentals.backend.equipment.api;
 
+import lombok.Getter;
 import lombok.Setter;
 
 public class PatchEquipmentRequest {
+    @Getter
     @Setter
     private Long equipmentId;
 
+    @Getter
     @Setter
     private String name;
 
+    @Getter
     @Setter
     private Float cost;
 
+    @Getter
     @Setter
-    private String imgLoc;
+    private String category;
 
+    @Getter
     @Setter
     private Integer quantity;
 
+    @Getter
     @Setter
     private String description;
 
-    public PatchEquipmentRequest(Long equipmentId, String name, Float cost, String imgLoc,
+    public PatchEquipmentRequest(Long equipmentId, String name, Float cost, String category,
             Integer quantity, String description) {
         this.equipmentId = equipmentId;
         this.name = name;
         this.cost = cost;
-        this.imgLoc = imgLoc;
+        this.category = category;
         this.quantity = quantity;
         this.description = description;
-    }
-
-    public Long getEquipmentId() {
-        return this.equipmentId;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public Float getCost() {
-        return this.cost;
-    }
-
-    public String getImgLoc() {
-        return this.imgLoc;
-    }
-
-    public Integer getQuantity() {
-        return this.quantity;
-    }
-
-    public String getDescription() {
-        return this.description;
     }
 }

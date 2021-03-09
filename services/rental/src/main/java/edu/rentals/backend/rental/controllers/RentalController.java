@@ -1,85 +1,46 @@
 package edu.rentals.backend.rental.controllers;
 
-import com.google.gson.*;
+import edu.rentals.backend.rental.apis.EquipmentInfo;
+import edu.rentals.backend.rental.apis.RentalRequest;
+import edu.rentals.backend.rental.entities.Invoice;
+import edu.rentals.backend.rental.repositories.EquipmentRepository;
+import edu.rentals.backend.rental.repositories.InvoiceRepository;
 import edu.rentals.backend.rental.repositories.RentalRepository;
-import edu.rentals.backend.rental.apis.ResponseRental;
 import edu.rentals.backend.rental.entities.Equipment;
-import edu.rentals.backend.rental.entities.Rental;
+import edu.rentals.backend.rental.entities.Rentals;
+import edu.rentals.backend.rental.repositories.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
-import java.sql.Timestamp;
-import java.util.*;
-
 
 @RestController
 public class RentalController {
     @Autowired
     private RentalRepository rentalRepository;
 
+    @Autowired
+    private EquipmentRepository equipmentRepository;
+
+    @Autowired
+    private InvoiceRepository invoiceRepository;
+
+    @Autowired
+    private StoreRepository storeRepository;
+
     @PostMapping(value = "/rental", consumes = "application/json", produces = "application/json")
-    public Rental createStore(@RequestBody Rental r) {
-        return rentalRepository.save(r);
+    public Rentals createRental(@RequestBody RentalRequest r) {
+        Rentals rentals = new Rentals(r.getStoreId(), r.getUserId(), r.getRentalTime(), r.getReturnTime());
+        rentalRepository.save(rentals);
 
-    }
-
-    @GetMapping("/rental/{invoiceId}")
-    public Map<String, ResponseRental> getByID(@PathVariable Long invoiceId) {
-
-        ResponseRental response = new ResponseRental();
-
-        Rental rental = rentalRepository.findOneByInvoiceId(invoiceId);
-
-        List<EquipmentInfo> equipmentInfos = new ArrayList<>();
-
-        for (Equipment equipment : rental.getEquipment()) {
-            String id = equipment.getEquipmentId().toString();
-            String uri = "http://localhost:8080/equipment/" + id;
-
-            RestTemplate restTemplate = new RestTemplate();
-            JsonObject eJson = restTemplate.getForObject(uri, JsonObject.class);
-            String equipmentName = eJson.getAsJsonObject("equipment").get("name").toString();
-
-            EquipmentInfo e = new EquipmentInfo();
-
-            e.setId(equipment.getEquipmentId());
-            e.setName(equipmentName);
-            e.setQuantity(equipment.getQuantity());
-
-            equipmentInfos.add(e);
-
+        Double totalCost = 0d;
+        for (EquipmentInfo ei : r.getEquipment()) {
+            Equipment e = equipmentRepository.findById(ei.getEquipmentId()).get();
+            totalCost += e.getPrice();
         }
 
-        response.setEquipment(equipmentInfos);
+        String storeName = storeRepository.findById(r.getStoreId()).get().getName();
+        Invoice invoice = new Invoice(totalCost, r.getStoreId(), storeName, r.getUserId());
+        invoiceRepository.save(invoice);
 
-        final String uri = "http://localhost:8080/invoices";
-
-        RestTemplate restTemplate = new RestTemplate();
-        JsonObject invoices = restTemplate.getForObject(uri, JsonObject.class);
-
-        JsonArray invoices_array = (JsonArray) invoices.get("invoices");
-
-        invoices_array.forEach(x -> {
-            if (x.isJsonObject()) {
-                if (x.getAsJsonObject().get("id").toString().equals(invoiceId)) {
-                    JsonObject result = x.getAsJsonObject();
-                    response.setId(invoiceId);
-                    response.setTranscationDate(Timestamp.valueOf(result.get("transactionDate").getAsString()));
-                    response.setStoreId(result.get("storeId").getAsLong());
-                    response.setStoreName(result.get("storeName").getAsString());
-                }
-            }
-        });
-
-        response.setRentalStartDate(rental.getRentalTime());
-        response.setDueDate(rental.getReturnTime());
-
-        Map<String, ResponseRental> final_response = new HashMap<>();
-
-        final_response.put("invoice", response);
-
-        return final_response;
+        return rentals;
     }
-
 }

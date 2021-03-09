@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "RENTAL")
-public class Rental {
+public class Rentals {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,32 +27,26 @@ public class Rental {
     @Getter
     @Setter
     @Column(name = "RENTAL_TIME", nullable = false)
-    private Timestamp rentalTime;
+    private String rentalTime;
 
     @Getter
     @Setter
     @Column(name = "RETURN_TIME", nullable = false)
-    private Timestamp returnTime;
+    private String returnTime;
 
     @Getter
     @Setter
-    @Column(name = "INVOICE_ID", nullable = false)
-    private Long invoiceId;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "rental")
+    private List<EquipmentInfo> equipment;
 
-    @Getter
-    @Setter
-    @OneToMany(mappedBy = "rental")
-    private List<Equipment> equipment;
-
-    public Rental(Long storeId, String userId, Long invoiceId, Timestamp rentalTime, Timestamp returnTime) {
+    public Rentals(Long storeId, String userId, String rentalTime, String returnTime) {
         this.storeId = storeId;
         this.userId = userId;
         this.rentalTime = rentalTime;
         this.returnTime = returnTime;
-        this.invoiceId = invoiceId;
     }
 
-    public Rental() {
+    public Rentals() {
 
     }
 }

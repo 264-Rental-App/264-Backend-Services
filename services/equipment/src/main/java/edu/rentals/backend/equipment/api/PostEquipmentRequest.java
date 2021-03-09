@@ -1,57 +1,40 @@
 package edu.rentals.backend.equipment.api;
 
+import lombok.Getter;
 import lombok.Setter;
 
 public class PostEquipmentRequest {
+    @Getter
     @Setter
     private Long storeId;
 
+    @Getter
     @Setter
     private String name;
 
+    @Getter
     @Setter
     private Float cost;
 
+    @Getter
     @Setter
-    private String imgLoc;
+    private String category;
 
+    @Getter
     @Setter
     private Integer quantity;
 
+    @Getter
     @Setter
     private String description;
 
-    public PostEquipmentRequest(Long storeId, String name, Float cost, String imgLoc, Integer quantity,
-            String description) {
+    public PostEquipmentRequest(Long storeId, String name, Float cost, String category, Integer quantity,
+                                String description) {
         this.storeId = storeId;
         this.name = name;
         this.cost = cost;
-        this.imgLoc = imgLoc;
+        this.category = category;
         this.quantity = quantity;
         this.description = description;
-    }
-
-    public Long getStoreId() {
-        return this.storeId;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public Float getCost() {
-        return this.cost;
-    }
-
-    public String getImgLoc() {
-        return this.imgLoc;
-    }
-
-    public Integer getQuantity() {
-        return this.quantity;
-    }
-
-    public String getDescription() {
-        return this.description;
     }
 }

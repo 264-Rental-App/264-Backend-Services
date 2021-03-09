@@ -27,8 +27,8 @@ public class Equipment {
 
     @Getter
     @Setter
-    @Column(name = "IMG_LOC", nullable = true)
-    private String imgLoc;
+    @Column(name = "CATEGORY", nullable = true)
+    private String category;
 
     @Getter
     @Setter
@@ -45,10 +45,10 @@ public class Equipment {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    public Equipment(Long storeId, String name, String imgLoc, Float cost, Integer stock, String desc) {
+    public Equipment(Long storeId, String name, String category, Float cost, Integer stock, String desc) {
         this.storeId = storeId;
         this.name = name;
-        this.imgLoc = imgLoc;
+        this.category = category;
         this.price = cost;
         this.stock = stock;
         this.description = desc;
