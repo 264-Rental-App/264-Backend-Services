@@ -17,7 +17,7 @@ public class PatchController {
 
     @PatchMapping(path = "/users/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public PostNewUserResponse updatedUser(@RequestBody PatchUserByIdRequest request) {
-        User user = userRepository.findByUserId(request.getUserId());
+        User user = userRepository.findOneByUserId(request.getUserId());
 
         if (request.getUserFirstName() != null) {
             user.setUserFirstName(request.getUserFirstName());

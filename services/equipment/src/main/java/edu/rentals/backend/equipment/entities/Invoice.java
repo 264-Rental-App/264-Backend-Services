@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "INVOICE", indexes = {@Index(columnList = "STORE_ID,USER_ID")})
+@Table(name = "INVOICE", indexes = { @Index(columnList = "STORE_ID,USER_ID") })
 public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

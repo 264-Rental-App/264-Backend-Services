@@ -1,24 +1,27 @@
 package edu.rentals.backend.forms.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name = "FORM", indexes = { @Index(columnList = "STORE_ID") })
+@Table(name = "FORM", indexes = {@Index(columnList = "STORE_ID")})
 public class Form {
+    @Getter
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", nullable = false, updatable = false)
     private Long id;
 
+    @Getter
+    @Setter
     @Column(name = "STORE_ID", nullable = false, updatable = false)
     private Long storeId;
 
+    @Getter
+    @Setter
     @Column(name = "CONTENTS", nullable = false)
     private String formBody;
 
@@ -29,17 +32,5 @@ public class Form {
 
     public Form() {
 
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public Long getStoreId() {
-        return this.storeId;
-    }
-
-    public String getFormBody() {
-        return this.formBody;
     }
 }

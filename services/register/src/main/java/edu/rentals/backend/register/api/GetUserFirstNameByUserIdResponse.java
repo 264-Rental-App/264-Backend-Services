@@ -1,20 +1,15 @@
 package edu.rentals.backend.register.api;
 
-import edu.rentals.backend.register.entities.User;
+import lombok.Getter;
+import lombok.Setter;
 
 public class GetUserFirstNameByUserIdResponse {
 
+    @Getter
+    @Setter
     private String userFirstName;
 
     public GetUserFirstNameByUserIdResponse(String userFirstName) {
         this.userFirstName = userFirstName;
-    }
-
-    public void setUser(String userFirstName) {
-        this.userFirstName = userFirstName;
-    }
-
-    public String getUser() {
-        return userFirstName;
     }
 }

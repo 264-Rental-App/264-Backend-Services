@@ -5,17 +5,11 @@ import lombok.Setter;
 
 public class PostNewUserResponse {
 
+    @Getter
+    @Setter
     private String userId;
 
     public PostNewUserResponse(String userId) {
         this.userId = userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserId() {
-        return userId;
     }
 }

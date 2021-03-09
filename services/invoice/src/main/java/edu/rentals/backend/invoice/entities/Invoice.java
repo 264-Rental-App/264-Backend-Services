@@ -1,19 +1,11 @@
 package edu.rentals.backend.invoice.entities;
 
-import java.sql.Timestamp;
-import java.time.Instant;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 @Entity
 @Table(name = "INVOICE", indexes = { @Index(columnList = "STORE_ID,USER_ID") })

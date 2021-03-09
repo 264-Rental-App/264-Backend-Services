@@ -1,31 +1,34 @@
 package edu.rentals.backend.forms.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Index;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-
 @Entity
-@Table(name = "SIGNED_FORM", indexes = { @Index(columnList = "FORM_ID"), @Index(columnList = "USER_ID") })
+@Table(name = "SIGNED_FORM", indexes = {@Index(columnList = "FORM_ID"), @Index(columnList = "USER_ID")})
 public class SignedForm {
+    @Getter
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID", nullable = false, updatable = false)
     private Long id;
 
+    @Getter
+    @Setter
     @Column(name = "FORM_ID", nullable = false, updatable = false)
     private Long formId;
 
+    @Getter
+    @Setter
     @Column(name = "USER_ID", nullable = false, updatable = false)
-    private Long userId;
+    private String userId;
 
-    @Column(name = "timestamp", nullable = false)
+    @Getter
+    @Setter
+    @Column(name = "TIMESTAMP", nullable = false)
     private String timestamp;
 
     @PrePersist
@@ -33,28 +36,12 @@ public class SignedForm {
         this.timestamp = (new Timestamp(System.currentTimeMillis())).toString();
     }
 
-    public SignedForm(Long formId, Long userId) {
+    public SignedForm(Long formId, String userId) {
         this.formId = formId;
         this.userId = userId;
     }
 
     public SignedForm() {
 
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public Long getFormId() {
-        return this.formId;
-    }
-
-    public Long getUserId() {
-        return this.userId;
-    }
-
-    public String getTimestamp() {
-        return this.timestamp;
     }
 }

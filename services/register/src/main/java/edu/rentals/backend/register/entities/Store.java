@@ -1,89 +1,62 @@
 package edu.rentals.backend.register.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "STORES")
 public class Store {
 
+    @Getter
+    @Setter
     @Column(name = "NAME", nullable = false)
     private String name;
 
+    @Getter
+    @Setter
     @Column(name = "LAT", nullable = false)
     private Float lat;
 
+    @Getter
+    @Setter
     @Column(name = "LONG", nullable = false)
     private Float lon;
 
     @Id
+    @Setter
+    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, updatable = false)
     private Long id;
 
+    @Getter
+    @Setter
     @Column(name = "COMMON_ADDRESS", nullable = false)
     private String commonAddress;
 
+    @Getter
+    @Setter
     @Column(name = "CATEGORY", nullable = false)
     private String category;
 
-    public Store(String name, Float lat, Float lon, String commonAddress, String category) {
+    @Getter
+    @Setter
+    @Column(name = "OWNER_ID", nullable = false)
+    private String ownerId;
+
+    public Store(String name, Float lat, Float lon, String commonAddress, String category, String ownerId) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;
         this.commonAddress = commonAddress;
         this.category = category;
+        this.ownerId = ownerId;
     }
 
     public Store() {
 
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Float getLat() {
-        return lat;
-    }
-
-    public void setLat(Float lat) {
-        this.lat = lat;
-    }
-
-    public Float getLon() {
-        return lon;
-    }
-
-    public void setLon(Float lon) {
-        this.lon = lon;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCommonAddress() {
-        return commonAddress;
-    }
-
-    public void setCommonAddress(String commonAddress) {
-        this.commonAddress = commonAddress;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public double findByLatLong(float lat, float lon, double distance) {
@@ -94,5 +67,4 @@ public class Store {
         dist = dist * 60 * 1.1515;
         return dist;
     }
-
 }

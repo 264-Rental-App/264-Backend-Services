@@ -25,7 +25,7 @@ public class GetController {
 
     @GetMapping(path = "/invoices/{storeId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public GetInvoiceByStoreIdResponse getInvoiceByStoreIdResponse(@PathVariable("storeId") Long storeId) {
-        List<Invoice> invoices = invoiceRepository.findByStoreId(storeId);
+        List<Invoice> invoices = invoiceRepository.findOneByStoreId(storeId);
         return new GetInvoiceByStoreIdResponse(invoices);
     }
 
@@ -34,6 +34,6 @@ public class GetController {
             throws FirebaseAuthException {
         FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(token);
         String uid = decodedToken.getUid();
-        return new GetInvoiceByStoreIdResponse(invoiceRepository.findByUserId(uid));
+        return new GetInvoiceByStoreIdResponse(invoiceRepository.findOneByUserId(uid));
     }
 }

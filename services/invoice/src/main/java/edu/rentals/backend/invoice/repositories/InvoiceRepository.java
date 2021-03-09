@@ -9,7 +9,7 @@ import edu.rentals.backend.invoice.entities.Invoice;
 
 @RepositoryRestResource(path = "invoice")
 public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
-    public List<Invoice> findByStoreId(Long storeId);
+    public List<Invoice> findOneByStoreId(Long storeId);
 
-    public List<Invoice> findByUserId(String userId);
+    public List<Invoice> findOneByUserId(String userId);
 }

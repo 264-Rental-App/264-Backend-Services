@@ -2,6 +2,7 @@ package edu.rentals.backend.forms.controllers;
 
 import java.util.List;
 
+import edu.rentals.backend.forms.entities.Form;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.rentals.backend.forms.api.GetFormsByStoreIdResponse;
-import edu.rentals.backend.forms.entities.Form;
 import edu.rentals.backend.forms.repositories.FormRepository;
 
 @RestController

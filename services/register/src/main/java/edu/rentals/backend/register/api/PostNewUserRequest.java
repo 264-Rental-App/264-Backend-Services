@@ -1,17 +1,28 @@
 package edu.rentals.backend.register.api;
 
+import lombok.Getter;
 import lombok.Setter;
 
 public class PostNewUserRequest {
 
+    @Getter
+    @Setter
     private String userId;
 
+    @Getter
+    @Setter
     private String userEmail;
 
+    @Getter
+    @Setter
     private String userFirstName;
 
+    @Getter
+    @Setter
     private String userPhoneNumber;
 
+    @Getter
+    @Setter
     private String accountType;
 
     public PostNewUserRequest(String id, String email, String firstname, String phoneNumber, String accountType) {
@@ -20,45 +31,5 @@ public class PostNewUserRequest {
         this.userFirstName = firstname;
         this.userPhoneNumber = phoneNumber;
         this.accountType = accountType;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserId() {
-        return this.userId;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public String getUserEmail() {
-        return this.userEmail;
-    }
-
-    public void setUserFirstName(String userFirstName) {
-        this.userFirstName = userFirstName;
-    }
-
-    public String getUserFirstName() {
-        return this.userFirstName;
-    }
-
-    public void setUserPhoneNumber(String userPhoneNumber) {
-        this.userPhoneNumber = userPhoneNumber;
-    }
-
-    public String getUserPhoneNumber() {
-        return this.userPhoneNumber;
-    }
-
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
-    }
-
-    public String getAccountType() {
-        return accountType;
     }
 }
