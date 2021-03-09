@@ -12,11 +12,14 @@ public class PostNewUserRequest {
 
     private String userPhoneNumber;
 
-    public PostNewUserRequest(String id, String email, String firstname, String phoneNumber) {
+    private String accountType;
+
+    public PostNewUserRequest(String id, String email, String firstname, String phoneNumber, String accountType) {
         this.userId = id;
         this.userEmail = email;
         this.userFirstName = firstname;
         this.userPhoneNumber = phoneNumber;
+        this.accountType = accountType;
     }
 
     public void setUserId(String userId) {
@@ -49,5 +52,13 @@ public class PostNewUserRequest {
 
     public String getUserPhoneNumber() {
         return this.userPhoneNumber;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public String getAccountType() {
+        return accountType;
     }
 }

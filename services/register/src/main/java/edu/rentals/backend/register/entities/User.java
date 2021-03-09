@@ -23,11 +23,15 @@ public class User {
     @Column(name = "USER_PHONE_NUMBER", nullable = false)
     private String userPhoneNumber;
 
-    public User(String userId, String userFirstName, String userEmail, String userPhoneNumber) {
+    @Column(name = "ACCOUNT_TYPE", nullable = false)
+    private String accountType;
+
+    public User(String userId, String userFirstName, String userEmail, String userPhoneNumber, String accountType) {
         this.userId = userId;
         this.userFirstName = userFirstName;
         this.userEmail = userEmail;
         this.userPhoneNumber = userPhoneNumber;
+        this.accountType = accountType;
     }
 
     public void setId(Long id) {
@@ -68,5 +72,13 @@ public class User {
 
     public String getUserPhoneNumber() {
         return userPhoneNumber;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public String getAccountType() {
+        return accountType;
     }
 }
